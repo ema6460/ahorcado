@@ -7,11 +7,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-  palabra = 'SAL';
+  palabra = 'LIMA';
   palabraOculta = '';
   intentos = 0;
   gano = false;
   perdio = false;
+
+
+
 
   letras = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',
     'K', 'L', 'M', 'N', 'Ñ', 'O', 'P', 'Q', 'R', 'S',
