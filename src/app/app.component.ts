@@ -7,14 +7,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-  palabra = 'LIMA';
+  palabra = 'INFORMATICA';
   palabraOculta = '';
   intentos = 0;
   gano = false;
   perdio = false;
-
-
-
+  jugadas = 11;
+  probabilidad = 0;
 
   letras = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',
     'K', 'L', 'M', 'N', 'Ñ', 'O', 'P', 'Q', 'R', 'S',
@@ -23,7 +22,7 @@ export class AppComponent {
   constructor() {
 
     this.palabraOculta = '_ '.repeat(this.palabra.length);
-
+   
   }
 
   comprobar(letra) {
@@ -58,7 +57,7 @@ export class AppComponent {
       console.log('Usted gano');
     }
 
-    if (this.intentos >= 9) {
+    if (this.intentos >= this.jugadas) {
       this.perdio = true;
       console.log('Usted perdio');
     }
@@ -69,15 +68,27 @@ export class AppComponent {
 
 
   existeLetra(letra) {
+
+    const leyLaplece = (this.jugadas / this.letras.length) * 100;
+    console.log( 'laplace' + leyLaplece);
     if (this.palabra.indexOf(letra) >= 0) {
-
       console.log('Letra existe ' + letra);
+      for(let i = 0; i < letra.length; i++) {
+      this.probabilidad = this.probabilidad + leyLaplece;
+      console.log(' Tu probabilidad aumento un ' + this.probabilidad + '%');
+    }
     } else {
-
       console.log('Letra no existe ' + letra);
+      for (let i = 0; i < letra.length; i++) {
+        this.probabilidad = this.probabilidad - leyLaplece;
+        console.log(' Tu probabilidad disminuyo un ' + this.probabilidad + '%');
+      }
       this.intentos++;
     }
   }
+
+
+  
 }
 
 
